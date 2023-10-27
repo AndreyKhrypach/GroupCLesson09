@@ -5,9 +5,13 @@ public class Lesson09Program {
     public static void main(String[] args) {
         Random random = new Random();
         int[] array = new int[random.nextInt(2) + 5];
+
         for (int i = 0; i < array.length; i++) {
             array[i] = random.nextInt(9) + 1;
         }
+
+        int leftNum = array[0];
+        int rightNum = array[array.length - 1];
 
         System.out.println(Arrays.toString(array));
 
@@ -15,16 +19,19 @@ public class Lesson09Program {
         int leftCount = countMatches(array);
 
         int[] reverseArray = reverseArray(array);
-        System.out.println(Arrays.toString(reverseArray));
 
         int rightCount = countMatches(reverseArray);
-        if(leftCount > 1)
-        System.out.println(leftCount );
+
+        if (leftCount > 1)
+            System.out.println("left number = " + leftNum + " has count = " + leftCount);
+
         if (rightCount > 1) {
-            System.out.println(rightCount);
-        } else {
-            System.out.println("No matches");
+            System.out.println("right number = " + rightNum + " has count = " + rightCount);
         }
+
+        if (leftCount == 1 && rightCount == 1)
+            System.out.println("No matches");
+
 
 //
 //        int time = 0;
@@ -81,15 +88,16 @@ public class Lesson09Program {
 //        System.out.println(factorial);
     }
 
-    public static int[] reverseArray(int[] array){
+    public static int[] reverseArray(int[] array) {
         for (int i = 0; i < array.length / 2; i++) {
             int temp = array[i];
-            array[i] = array[array.length - i -1];
+            array[i] = array[array.length - i - 1];
             array[array.length - i - 1] = temp;
         }
         return array;
     }
-    public static int countMatches(int[] array){
+
+    public static int countMatches(int[] array) {
         int count = 1;
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] == array[i + 1]) {
@@ -100,6 +108,7 @@ public class Lesson09Program {
         }
         return count;
     }
+
     public static void initializeNumbers(int[] numbers) {
         Random random = new Random();
         for (int i = 0; i < numbers.length; i++) {
